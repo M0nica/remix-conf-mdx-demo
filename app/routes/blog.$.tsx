@@ -76,7 +76,7 @@ export default function BlogPost() {
 
 
   return (
-    <article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:prose-invert lg:prose-lg'>
+    <article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
       <Component />
     </article>
   );
