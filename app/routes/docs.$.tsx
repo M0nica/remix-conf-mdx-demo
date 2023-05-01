@@ -8,16 +8,17 @@ import { json, redirect } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react'
 import { parseISO, format } from 'date-fns';
 import * as React from 'react';
-import { getMDXComponent } from 'mdx-bundler/client';
+import { getMDXComponent,  } from 'mdx-bundler/client';
 
-import invariant from "tiny-invariant";
-
+import {TableOfContents}
+	from "~/components/TableOfContents"
 import { MarkdownView } from "~/components/Markdown";
 import { parseMarkdown } from "~/utils/mdx-bundler.server";
  import { getContent } from "~/utils/blog.server";
 
 import { CacheControl } from "~/utils/cache-control.server";
 import { getSeoMeta, getSeoLinks } from "~/seo";
+import invariant from "tiny-invariant";
 ;
 
 export const loader = async ({params}: LoaderArgs) => {
@@ -29,16 +30,9 @@ export const loader = async ({params}: LoaderArgs) => {
 		throw new Error('path is not defined')
 	}    
 
-	// const files = await getContent(`docs/${path}`);
-	// let post = files && parseMarkdown(files[0].content);
 	const files = await getContent(`docs/${path}`);
 
 	let post = files && (await parseMarkdown(files[0].content));
-	// if (!post) {
-	// 	throw json({}, {
-	// 		status: 404, headers: {}
-	// 	})
-	// }    
 
 	//invariant(post, "Not found");
 	if (!post) {
@@ -81,15 +75,19 @@ export const links = () => {
 export default function BlogPost() {
 	const { post } = useLoaderData<typeof loader>();
 
-	const { code } = post;
+	const { code, headings } = post;
 
 	const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
-
 	return (
+		<>
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
-			<Component />
+		
+			<Component 
+				components={{TableOfContents: () => <TableOfContents headings={headings}/>
+				
+				}}/>
 		</article>
+		</>
 	);
-  
 }

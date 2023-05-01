@@ -1,7 +1,8 @@
 import { bundleMDX } from "mdx-bundler";
-// import { Callout, Fence, QuickLink, QuickLinks } from '~/components/Markdown';
-import calculateReadingTime from "reading-time";
 
+import calculateReadingTime from "reading-time";
+import remarkHeadings from "./parseHeadings";
+;
 export async function parseMarkdown(markdown: string) {
   const { default: a11yEmoji } = await import("@fec/remark-a11y-emoji");
 
@@ -11,35 +12,34 @@ export async function parseMarkdown(markdown: string) {
 
   const { default: remarkSlug } = await import("remark-slug");
 
-  const { frontmatter, code } = await bundleMDX({
-    source: markdown,
 
+let headings = []
+
+  const { frontmatter, code } = await bundleMDX({ 
+    source: markdown,
     mdxOptions(options, frontmatter) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkSlug,
         a11yEmoji,
+        
       ];
-
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        [rehypeAutolinkHeadings, { behavior: "wrap" }],
+        [rehypeAutolinkHeadings, { behavior: "wrap" }], [remarkHeadings, {
+          exportRef: headings
+        }],
       ];
 
       return options;
     },
   });
 
-  const readTime = calculateReadingTime(code);
 
-  // console.log('we are returning ', {
-  //   frontmatter,
-  //   readTime,
-  //   code,
-  //   body: code,
-  // })
-  
+const readTime = calculateReadingTime(code);
+
   return {
+    headings,
     frontmatter,
     readTime,
     code,
