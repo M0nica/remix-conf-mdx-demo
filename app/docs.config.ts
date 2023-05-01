@@ -31,7 +31,7 @@ export default {
     },
     editLink: {
         enabled: true,
-        link: 'https://github.com/freekrai/remix-docs',
+        link: 'https://github.com/m0nica/remix-mdx-docs',
         text: 'Edit this page on GitHub',
     },
 };

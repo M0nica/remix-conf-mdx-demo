@@ -6,7 +6,7 @@ import type {
 } from "@vercel/remix";
 import { json } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react'
-
+import { QuickLink,QuickLinks } from "~/components/Markdown";
 import invariant from "tiny-invariant";
 import { getContent } from "~/utils/blog.server";
 import { CacheControl } from "~/utils/cache-control.server";
@@ -59,7 +59,7 @@ export default function BlogPost() {
 
 	return (
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
-			<Component />
+			<Component components={{QuickLink, QuickLinks}} />
 		</article>
 	);
 }
