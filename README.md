@@ -21,7 +21,7 @@ This also gives you a lot of flexibility, for example, you can have multiple fil
 
 - `content/posts/hello-world/index.mdx` returns as `/hello-world`
 - `content/posts/hello-world/abc.mdx` returns as `/hello-world/abc`
-- `content/posts/hello-world/more-hello/index.mdx` returns as  `hello-world/more-hello`
+- `content/posts/hello-world/more-hello/index.mdx` returns as `hello-world/more-hello`
 - `content/posts/hello/still-hello/index.mdx` returns as `hello/still-hello`
 - `content/posts/2022/test/index.mdx` returns as `/2022/test`
 
@@ -58,7 +58,7 @@ By default, remix-docs will try to use the file system to read files, this works
 
 - `SESSION_SECRET`: Session Secret used for sessions such as dark mode
 - `USE_FILESYSTEM_OR_GITHUB`: this is either `fs` or `gh`
-- `GITHUB_TOKEN`:  your Personal access token
+- `GITHUB_TOKEN`: your Personal access token
 - `GITHUB_OWNER`: your Github name
 - `GITHUB_REPO`: your Github repo
 
@@ -70,40 +70,38 @@ The second part of our config is inside the `app/docs.config.ts` file:
 
 ```js
 export default {
-    base: '/',
-	lang: 'en-US',
-    title: 'Remix Docs',
-    description: 'Just playing around.',
-    nav: [
-        { text: 'Docs', link: '/docs' },
-        { text: 'Blog', link: '/blog' },
-    ],
-    head: [
-
-    ],
-    sidebar: [
-        {
-            title: 'Introduction',
-            links: [
-                { title: 'Getting started', href: '/docs/getting-started' },
-                { title: 'Installation', href: '/docs/installation' },
-            ],
-        },
-        {
-            title: 'Core Concepts',
-            links: [
-                { title: 'Roadmap', href: '/docs/roadmap' },
-                { title: 'Changelog', href: '/docs/changelog' },
-            ],
-        },
-    ],
-    search: {
-        enabled: true,
+  base: "/",
+  lang: "en-US",
+  title: "Remix Docs",
+  description: "Just playing around.",
+  nav: [
+    { text: "Docs", link: "/docs" },
+    { text: "Blog", link: "/blog" },
+  ],
+  head: [],
+  sidebar: [
+    {
+      title: "Introduction",
+      links: [
+        { title: "Getting started", href: "/docs/getting-started" },
+        { title: "Installation", href: "/docs/installation" },
+      ],
     },
-    editLink: {
-        link: 'https://github.com/freekrai/remix-docs',
-        text: 'Edit this page on GitHub',
+    {
+      title: "Core Concepts",
+      links: [
+        { title: "Roadmap", href: "/docs/roadmap" },
+        { title: "Changelog", href: "/docs/changelog" },
+      ],
     },
+  ],
+  search: {
+    enabled: true,
+  },
+  editLink: {
+    link: "https://github.com/freekrai/remix-docs",
+    text: "Edit this page on GitHub",
+  },
 };
 ```
 
