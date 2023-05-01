@@ -1,5 +1,6 @@
 export default function remarkHeadings(options) {
     return async function transform(tree: M.Root) {
+        /* import package to traverse @unifiedjs Universal Syntax Tree */ 
         const { visit } = await import('unist-util-visit');
 
         visit(
