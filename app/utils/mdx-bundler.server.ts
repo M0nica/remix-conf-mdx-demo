@@ -17,7 +17,7 @@ let headings = []
 
   const { frontmatter, code } = await bundleMDX({ 
     source: markdown,
-    mdxOptions(options, frontmatter) {
+    mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkSlug,

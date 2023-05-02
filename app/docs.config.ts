@@ -14,7 +14,7 @@ export default {
         {
             title: 'Introduction',
             links: [
-                { title: 'Getting started', href: '/docs/getting-started' },
+                { title: 'Table of Contents 101', href: '/docs/why-toc' },
                 { title: 'Installation', href: '/docs/installation' },
             ],
         },

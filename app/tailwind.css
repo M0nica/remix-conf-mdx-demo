@@ -360,6 +360,24 @@ input[type='email'] {
   font-weight: inherit;
 }
 
+.prose h1 a,
+.prose h2 a,
+.prose h3 a {
+  text-decoration: none;
+}
+
+.prose h1 a:hover,
+.prose h1 a:focus,
+.prose h1 a:active
+.prose h2 a:hover,
+.prose h2 a:focus,
+.prose h2 a:active,
+.prose h3 a:hover,
+.prose h3 a:focus,
+.prose h3 a:active {
+  text-decoration: underline;
+}
+
 .prose table {
   display: block;
   max-width: fit-content;
