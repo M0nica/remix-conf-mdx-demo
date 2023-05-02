@@ -169,7 +169,7 @@ export function Fence({ children, language }: FenceProps) {
 		theme={undefined}
 	  >
 		{({ className, style, tokens, getTokenProps }) => (
-		  <pre className={className} style={style}>
+				<pre className={cn('whitespace-pre-wrap',className)} style={style}>
 			<code>
 			  {tokens.map((line, lineIndex) => (
 				<React.Fragment key={lineIndex}>

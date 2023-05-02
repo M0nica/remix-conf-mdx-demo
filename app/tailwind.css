@@ -133,8 +133,12 @@ h6 {
   @apply visible;
 }
 
-.prose a {
-  @apply transition-all text-blue-500;
+.light .prose a, .prose a {
+  @apply transition-all text-pink-500;
+}
+
+.dark .prose a{
+  @apply transition-all text-slate-200;
 }
 
 .prose .anchor:after {
