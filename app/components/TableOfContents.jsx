@@ -7,7 +7,7 @@ export function TableOfContents({ headings }) {
             <ul>{headings.map(({ id, text }) =>
                     id && text ?
                         <li key={id}>
-                            <a href={`#${id}`} >{text}</a>
+                        <a className="hover:font-bold" href={`#${id}`} >{text}</a>
                         </li>
                         : <></>
                 )}

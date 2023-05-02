@@ -133,6 +133,10 @@ h6 {
   @apply visible;
 }
 
+.prose a:where(h2, h3, h4):not(:where([class~="not-prose"] *)) {
+  scroll-margin-top: 8rem;
+} 
+
 .light .prose a, .prose a {
   @apply transition-all text-pink-500;
 }
@@ -364,6 +368,16 @@ input[type='email'] {
 .prose h2 a,
 .prose h3 a {
   text-decoration: none;
+}
+
+.prose h2 a:hover::after,
+.prose h3 a:hover::after {
+  content: " 🔗";
+  text-decoration: underline;
+}
+.prose h2 a:hover,
+.prose h3 a:hover {
+  text-decoration: underline;
 }
 
 .prose h1 a:hover,

@@ -85,15 +85,15 @@ dependencies:
   rehype-autolink-headings:
     specifier: ^6.1.1
     version: 6.1.1
+  rehype-slug:
+    specifier: ^5.1.0
+    version: 5.1.0
   remark-mdx-frontmatter:
     specifier: ^3.0.0
     version: 3.0.0
   remark-mdx-toc:
     specifier: ^0.3.1
     version: 0.3.1
-  remark-slug:
-    specifier: ^7.0.1
-    version: 7.0.1
   remix-seo:
     specifier: ^0.1.0
     version: 0.1.0(@remix-run/react@1.15.0)(remix@1.15.0)
@@ -5120,10 +5120,6 @@ packages:
   /git-hooks-list@1.0.3:
     resolution: {integrity: sha512-Y7wLWcrLUXwk2noSka166byGCvhMtDRpgHdzCno1UQv/n/Hegp++a2xBWJL1lJarnKD3SWaljD+0z1ztqxuKyQ==}
 
-  /github-slugger@1.5.0:
-    resolution: {integrity: sha512-wIh+gKBI9Nshz2o46B0B3f5k/W+WI9ZAv6y5Dn5WJ5SK1t0TnDimB4WE5rmTD05ZAIn8HALCZVmCsvj0w0v0lw==}
-    dev: false
-
   /github-slugger@2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
     dev: false
@@ -5362,6 +5358,12 @@ packages:
       zwitch: 2.0.4
     transitivePeerDependencies:
       - supports-color
+
+  /hast-util-to-string@2.0.0:
+    resolution: {integrity: sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==}
+    dependencies:
+      '@types/hast': 2.3.4
+    dev: false
 
   /hast-util-whitespace@2.0.1:
     resolution: {integrity: sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==}
@@ -7601,6 +7603,18 @@ packages:
       unist-util-visit: 4.1.2
     dev: false
 
+  /rehype-slug@5.1.0:
+    resolution: {integrity: sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==}
+    dependencies:
+      '@types/hast': 2.3.4
+      github-slugger: 2.0.0
+      hast-util-has-property: 2.0.1
+      hast-util-heading-rank: 2.1.1
+      hast-util-to-string: 2.0.0
+      unified: 10.1.2
+      unist-util-visit: 4.1.2
+    dev: false
+
   /remark-frontmatter@4.0.1:
     resolution: {integrity: sha512-38fJrB0KnmD3E33a5jZC/5+gGAC2WKNiPw1/fdXJvijBlhA7RCsvJklrYJakS0HedninvaCYW8lQGf9C918GfA==}
     dependencies:
@@ -7674,17 +7688,6 @@ packages:
       '@types/mdast': 3.0.11
       mdast-util-to-hast: 11.3.0
       unified: 10.1.2
-
-  /remark-slug@7.0.1:
-    resolution: {integrity: sha512-NRvYePr69LdeCkEGwL4KYAmq7kdWG5rEavCXMzUR4qndLoXHJAOLSUmPY6Qm4NJfKix7/EmgObyVaYivONAFhg==}
-    dependencies:
-      '@types/hast': 2.3.4
-      '@types/mdast': 3.0.11
-      github-slugger: 1.5.0
-      mdast-util-to-string: 3.2.0
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
-    dev: false
 
   /remix-seo@0.1.0(@remix-run/react@1.15.0)(remix@1.15.0):
     resolution: {integrity: sha512-Dr51sNdOIjAqE62Xc7D2prNAowzudwB3fU1Lr9IxM2vUWGu+gdPIoo8duNA+qg+FYAuFJJJk11skJXD8+8p4pw==}

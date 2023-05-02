@@ -7,7 +7,7 @@ import BlogPost from '~/components/BlogPost';
 import { CacheControl } from "~/utils/cache-control.server";
 import { getSeoMeta } from "~/seo";
 import { getMDXComponent } from 'mdx-bundler/client';
-
+import { Callout } from '~/components/Markdown';
 import { MarkdownView } from "~/components/Markdown";
 import { parseMarkdown } from "~/utils/mdx-bundler.server";
 import * as React from 'react';
@@ -49,7 +49,7 @@ export default function Index() {
 	return (
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 
 		lg:prose-lg'>
-			<Component />
+			<Component components={{Callout}}/>
 		</article>
 	);
 }

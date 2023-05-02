@@ -10,7 +10,7 @@ export async function parseMarkdown(markdown: string) {
     "rehype-autolink-headings"
   );
 
-  const { default: remarkSlug } = await import("remark-slug");
+  const { default: rehypeSlug } = await import("rehype-slug");
 
 
 let headings = []
@@ -20,13 +20,13 @@ let headings = []
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
-        remarkSlug,
         a11yEmoji,
         
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        [rehypeAutolinkHeadings, { behavior: "wrap" }], [remarkHeadings, {
+        rehypeSlug,
+        [rehypeAutolinkHeadings, { behavior: "wrap"}], [remarkHeadings, {
           exportRef: headings
         }],
       ];

@@ -9,7 +9,7 @@ import { useLoaderData } from '@remix-run/react'
 import { parseISO, format } from 'date-fns';
 import * as React from 'react';
 import { getMDXComponent,  } from 'mdx-bundler/client';
-import {Fence} from "~/components/Markdown"
+import {Fence, Callout} from "~/components/Markdown"
 import {TableOfContents}
 	from "~/components/TableOfContents"
 import { MarkdownView } from "~/components/Markdown";
@@ -83,7 +83,7 @@ export default function BlogPost() {
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
 		
 			<Component 
-				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence
+				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence, Callout
 				
 				}}/>
 		</article>

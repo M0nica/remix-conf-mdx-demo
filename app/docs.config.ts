@@ -14,15 +14,14 @@ export default {
         {
             title: 'Introduction',
             links: [
-                { title: 'Table of Contents 101', href: '/docs/why-toc' },
+                { title: 'About', href: '/docs/about' },
                 { title: 'Installation', href: '/docs/installation' },
             ],
         },
         {
             title: 'Core Concepts',
             links: [
-                { title: 'Roadmap', href: '/docs/roadmap' },
-                { title: 'Changelog', href: '/docs/changelog' },
+                { title: 'Table of Contents 101', href: '/docs/why-toc' },
             ],
         },
     ],
