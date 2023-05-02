@@ -12,9 +12,10 @@ import { CacheControl } from "~/utils/cache-control.server";
 import * as React from 'react';
 import { getSeoMeta, getSeoLinks } from "~/seo";
 import { getMDXComponent } from 'mdx-bundler/client';
-
+import {Fence, Callout} from "~/components/Markdown"
 import type { MdxComponent } from '~/types';
 import { parseMarkdown } from '~/utils/mdx-bundler.server';
+import { FootnotesProvider, FootnoteRef, Footnotes } from 'react-a11y-footnotes'
 
 export const loader = async ({params}: LoaderArgs) => {
 	let path = params["*"];
@@ -76,8 +77,12 @@ export default function BlogPost() {
 
 
   return (
-    <article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
-      <Component />
+    <article className='scroll-pt-100 prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
+      <FootnotesProvider>
+        <Component components={{ Fence, Callout, 
+       FootnoteRef,
+         Footnotes }} />
+        </FootnotesProvider>  
     </article>
   );
 }
