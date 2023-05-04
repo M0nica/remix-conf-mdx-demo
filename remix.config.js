@@ -8,6 +8,9 @@ module.exports = {
   server: process.env.NODE_ENV === "development" ? undefined : "./server.js",
   //serverBuildPath: "api/index.js",
   ignoredRouteFiles: ["**/.*"],
+  serverDependenciesToBundle: [
+    /^remark.*/, /^rehype.*$/, /^hast.*$/, /^mdx.*$/, /^micromark.*$/, /^unist.*$/, /^vfile.*$/, /^unist-util.*$/, /^mdast.*$/, "decode-named-character-reference", /^estree.*$/, "is-plain-obj", "github-slugger", "ccount", "fault", "markdown-table", "character-entities"
+],
   // appDirectory: "app",
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "api/index.js",

@@ -1,17 +1,12 @@
 import { bundleMDX } from "mdx-bundler";
-
+import a11yEmoji from "@fec/remark-a11y-emoji";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug"
+// import remarkGfm from 'remark-gfm'
 import calculateReadingTime from "reading-time";
 import remarkHeadings from "./parseHeadings";
 ;
 export async function parseMarkdown(markdown: string) {
-  const { default: a11yEmoji } = await import("@fec/remark-a11y-emoji");
-
-  const { default: rehypeAutolinkHeadings } = await import(
-    "rehype-autolink-headings"
-  );
-
-  const { default: rehypeSlug } = await import("rehype-slug");
-
 
 let headings = []
 
@@ -21,7 +16,7 @@ let headings = []
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         a11yEmoji,
-        
+        // remarkGfm
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
