@@ -72,6 +72,28 @@ export const links = () => {
 	return [...seoLinks];
 };
 
+const Paragraph = (props: Props): JSX.Element => {
+
+	if (typeof props.children !== 'string') {
+		return <>{props.children}</>
+	}
+
+	return <> <p {...props} /><p>✨Sparkles Powered By: MDX✨</p></>
+}
+
+/* Wrap links in Markup that identifies external links that will open in a new window */
+const Link = (props: {
+	href: string;
+	children?: React.ReactNode;
+}) => {
+	const { href } = props;
+	return href.startsWith('http') ? <>
+		<a {...props} target="_blank" />
+		<span className="sr-only">(opens in a new tab)</span>
+	</> : <a {...props} />
+}
+
+
 export default function BlogPost() {
 	const { post } = useLoaderData<typeof loader>();
 
@@ -83,9 +105,13 @@ export default function BlogPost() {
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
 		
 			<Component 
-				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence, Callout
+				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence,
 				
-				}}/>
+				Callout
+				, a: Link,
+			// p: Paragraph
+				 
+				 }}/>
 		</article>
 	);
 }

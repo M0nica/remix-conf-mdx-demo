@@ -1,7 +1,7 @@
 export default {
     base: '/',
 	lang: 'en-US',
-    title: 'Remix Docs',
+    title: 'Remix MDX Docs Demo',
     description: 'Just playing around.',
     nav: [
         { text: 'Docs', link: '/docs' },
