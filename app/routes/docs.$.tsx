@@ -13,7 +13,7 @@ import {Fence, Callout} from "~/components/Markdown"
 import {TableOfContents}
 	from "~/components/TableOfContents"
 import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/mdx-bundler.server";
+import { parseMdx } from "~/utils/mdx-bundler.server";
  import { getContent } from "~/utils/blog.server";
 
 import { CacheControl } from "~/utils/cache-control.server";
@@ -32,7 +32,7 @@ export const loader = async ({params}: LoaderArgs) => {
 
 	const files = await getContent(`docs/${path}`);
 
-	let post = files && (await parseMarkdown(files[0].content));
+	let post = files && (await parseMdx(files[0].content));
 
 	//invariant(post, "Not found");
 	if (!post) {

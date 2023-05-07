@@ -14,7 +14,7 @@ import { getSeoMeta, getSeoLinks } from "~/seo";
 import { getMDXComponent } from 'mdx-bundler/client';
 import {Fence, Callout} from "~/components/Markdown"
 import type { MdxComponent } from '~/types';
-import { parseMarkdown } from '~/utils/mdx-bundler.server';
+import { parseMdx } from '~/utils/mdx-bundler.server';
 import { FootnotesProvider, FootnoteRef, Footnotes } from 'react-a11y-footnotes'
 
 export const loader = async ({params}: LoaderArgs) => {
@@ -29,7 +29,7 @@ export const loader = async ({params}: LoaderArgs) => {
 
   const files = await getContent(`posts/${path}`);
 
-  let post = files && (await parseMarkdown(files[0].content));
+  let post = files && (await parseMdx(files[0].content));
   if (!post) {
     throw json({}, {
       status: 404, headers: {}

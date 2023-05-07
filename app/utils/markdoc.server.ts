@@ -7,7 +7,7 @@ import { Callout, Fence, QuickLink, QuickLinks } from "~/components/Markdown";
 import fm from 'front-matter';
 import calculateReadingTime from 'reading-time'
 
-export function parseMarkdown(markdown: string, options: Config = {}) {
+export function parseMdx(markdown: string, options: Config = {}) {
 	const { attributes } = fm(markdown);
 	const readTime = calculateReadingTime(markdown)
 

@@ -15,11 +15,11 @@ import * as React from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 
 import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/mdx-bundler.server";
+import { parseMdx } from "~/utils/mdx-bundler.server";
 
 export const loader = async ({params}: LoaderArgs) => {
 	const files = await getContent(`pages/index`);
-	let post = files && await parseMarkdown(files[0].content);
+	let post = files && await parseMdx(files[0].content);
 
 	invariant(post, "Not found");
 

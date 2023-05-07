@@ -9,7 +9,7 @@ import { getSeoMeta } from "~/seo";
 import { getMDXComponent } from 'mdx-bundler/client';
 import { Callout } from '~/components/Markdown';
 import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/mdx-bundler.server";
+import { parseMdx } from "~/utils/mdx-bundler.server";
 import * as React from 'react';
 
 export const meta = ({data}) => {
@@ -26,7 +26,7 @@ export const meta = ({data}) => {
 }
 export let loader = async function({}: LoaderArgs) {
   const files = await getContent(`docs/index`);
-  let post = files && await parseMarkdown(files[0].content);
+  let post = files && await parseMdx(files[0].content);
 
   return json({
     post
