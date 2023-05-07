@@ -9,10 +9,10 @@ import { useLoaderData } from '@remix-run/react'
 import { parseISO, format } from 'date-fns';
 import * as React from 'react';
 import { getMDXComponent,  } from 'mdx-bundler/client';
-import {Fence, Callout} from "~/components/Markdown"
+import {Fence, Callout,CustomLink} from "~/components/Markdown"
 import {TableOfContents}
 	from "~/components/TableOfContents"
-import { MarkdownView } from "~/components/Markdown";
+
 import { parseMdx } from "~/utils/mdx-bundler.server";
  import { getContent } from "~/utils/blog.server";
 
@@ -72,26 +72,6 @@ export const links = () => {
 	return [...seoLinks];
 };
 
-const Paragraph = (props: Props): JSX.Element => {
-
-	if (typeof props.children !== 'string') {
-		return <>{props.children}</>
-	}
-
-	return <> <p {...props} /><p>✨Sparkles Powered By: MDX✨</p></>
-}
-
-/* Wrap links in Markup that identifies external links that will open in a new window */
-const Link = (props: {
-	href: string;
-	children?: React.ReactNode;
-}) => {
-	const { href } = props;
-	return href.startsWith('http') ? <>
-		<a {...props} target="_blank" />
-		<span className="sr-only">(opens in a new tab)</span>
-	</> : <a {...props} />
-}
 
 
 export default function BlogPost() {
@@ -108,9 +88,8 @@ export default function BlogPost() {
 				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence,
 				
 				Callout
-				, a: Link,
-			// p: Paragraph
-				 
+				, a: CustomLink,
+			
 				 }}/>
 		</article>
 	);

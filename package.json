@@ -14,7 +14,6 @@
   "dependencies": {
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
-    "@markdoc/markdoc": "^0.2.2",
     "@octokit/plugin-throttling": "^5.0.1",
     "@octokit/rest": "^19.0.7",
     "@remix-run/node": "^1.15.0",

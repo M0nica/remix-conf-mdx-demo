@@ -37,7 +37,6 @@ async function cacheFile(walkPath, filename, urlPath) {
 		let frontmatter = fm<BlogPostAttributes>(await fs.readFile(file, 'utf-8'));
 	    let url = '';
 
-		console.log('the problem file', file)
       // if file is a DS_Store file, skip it
 
 		if (file.endsWith('.DS_Store')) {

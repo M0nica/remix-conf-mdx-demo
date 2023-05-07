@@ -14,7 +14,6 @@ import { getSeoMeta } from "~/seo";
 import * as React from 'react';
 import { getMDXComponent } from 'mdx-bundler/client';
 
-import { MarkdownView } from "~/components/Markdown";
 import { parseMdx } from "~/utils/mdx-bundler.server";
 
 export const loader = async ({params}: LoaderArgs) => {
