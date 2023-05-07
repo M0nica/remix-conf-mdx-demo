@@ -11,7 +11,7 @@ headers:
 
 # Making Emojis More Accessible with MDX
 
-Emojis have become an integral part of our online communication, adding a fun and expressive touch to our messages (who couldn't use a bit more ✨). Making emojis accessible is an important step in creating an inclusive online environment. One way to make emojis more accessible is by including alternative text descriptions for screen readers. Alternative text can describe the appearance or meaning of the emoji, allowing users who are visually impaired to understand the message being conveyed. 
+Emojis have become an integral part of our online communication, adding a fun and expressive touch to our messages (who couldn't use a bit more ✨). Making emojis accessible is an important step in creating an inclusive online environment. One way to make emojis more accessible is by <FootnoteRef description={<>How to Make Emojis Accessible in HTML <a href="https://devyarns.com/accessible-emojis/">devyarns.com/accessible-emojis</a></>}> including alternative text descriptions for screen readers</FootnoteRef>. Alternative text can describe the appearance or meaning of the emoji, allowing users who are visually impaired to understand the message being conveyed. 
 
 <Callout children={'By adding some additional markup emojis will be announced properly across different devices and can distinguished from inline written text as images. '} type={"note"}/>
 
@@ -21,9 +21,9 @@ HTML generated before setting up `@fec/remark-a11y-emoji`:
 
 <Fence children={`<p>Emojis have become an integral part of our online communication, adding a fun and expressive touch to our messages (who couldn't use a bit more ✨). </p>`} language={"html"}/>
 
-Is read by VoiceOver as "who couldn't use a bit more object replacement character " but some devices may announce it differently.
 
 ## After 
 HTML generated after setting up `@fec/remark-a11y-emoji`:
 <Fence children={`<p>Emojis have become an integral part of our online communication, adding a fun and expressive touch to our messages (who couldn't use a bit more <span role="img" aria-label="sparkles">✨</span>)...</p>`} language={"html"}/>
-Is read by VoiceOver as "who couldn't use a bit more sparkle, *image*" 
+
+<Footnotes/>
