@@ -37,6 +37,12 @@ async function cacheFile(walkPath, filename, urlPath) {
 		let frontmatter = fm<BlogPostAttributes>(await fs.readFile(file, 'utf-8'));
 	    let url = '';
 
+		console.log('the problem file', file)
+      // if file is a DS_Store file, skip it
+
+		if (file.endsWith('.DS_Store')) {
+			return;
+		} else
 		// is this an index.mdx file?
 		if (file.endsWith('index.mdx')) {
 			url = `${urlPath}/${file.substring(walkPath.length + 1, file.length - '/index.mdx'.length)}`;
