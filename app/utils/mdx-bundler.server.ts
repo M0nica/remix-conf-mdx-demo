@@ -1,7 +1,7 @@
 import { bundleMDX } from "mdx-bundler";
 
 import calculateReadingTime from "reading-time";
-import remarkHeadings from "./parseHeadings";
+import rehypeHeadings from "./parseHeadings";
 ;
 export async function parseMarkdown(markdown: string) {
   const { default: a11yEmoji } = await import("@fec/remark-a11y-emoji");
@@ -17,16 +17,19 @@ let headings = []
 
   const { frontmatter, code } = await bundleMDX({ 
     source: markdown,
+    /*remark-rehype — Markdown to HTML
+rehype-remark — HTML to Markdown*/
+//     remark — Markdown
+// rehype — HTML
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         a11yEmoji,
-        
       ];
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: "wrap"}], [remarkHeadings, {
+        [rehypeAutolinkHeadings, { behavior: "wrap"}], [rehypeHeadings, {
           exportRef: headings
         }],
       ];
