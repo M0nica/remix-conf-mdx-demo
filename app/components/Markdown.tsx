@@ -65,11 +65,12 @@ export const CustomLink = (props: {
 	href: string;
 	children?: React.ReactNode;
 }) => {
-	const isExternalLink =  props?.href?.startsWith('http');
-	return isExternalLink ? <>
+	const {href} = props;
+	const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
+	return isInternalLink ? <Link to={href} prefetch="intent" {...props} /> : <>
 		<a {...props} target="_blank" rel="noopener noreferrer" />
 		<span className="sr-only">(opens in a new tab)</span>
-	</> : <Link to={props?.href} prefetch="intent" {...props} />
+	</>  
 }
 
 const Paragraph = (props: Props): JSX.Element => {
