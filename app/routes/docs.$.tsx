@@ -77,13 +77,13 @@ export const links = () => {
 export default function BlogPost() {
 	const { post } = useLoaderData<typeof loader>();
 
-	const { code, headings } = post;
+	const { code, headings, frontmatter } = post;
 
 	const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
 	return (
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
-		
+			<h1>{frontmatter.meta.title}</h1>
 			<Component 
 				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence,
 				

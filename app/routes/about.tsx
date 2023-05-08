@@ -52,7 +52,7 @@ export default function BlogPost() {
 
 	const { post } = useLoaderData<typeof loader>();
 
-	const { code } = post;
+	const { code, frontmatter } = post;
 
 	const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
@@ -60,6 +60,7 @@ export default function BlogPost() {
 
 	return (
 		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
+			<h1>{frontmatter.meta.title}</h1>
 			<Component />
 		</article>
 	);

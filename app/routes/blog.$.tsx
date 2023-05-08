@@ -70,15 +70,16 @@ export const links = () => {
 export default function BlogPost() {
   const { post } = useLoaderData<typeof loader>();
 
-  const { code } = post;
+ 
+  const { code, frontmatter } = post;
 
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
-
 
 
   return (
     <article className='scroll-pt-100 prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
       <FootnotesProvider>
+        <h1>{frontmatter.meta.title} </h1>
         <Component components={{ Fence, Callout, 
        FootnoteRef,
          Footnotes }} />
