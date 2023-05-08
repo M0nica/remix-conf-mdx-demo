@@ -14,6 +14,27 @@ This repo contains demo code for using MDX-bundler and Remix with:
 - Custom Remark plugin
 - imported components 
 
+## Resources
+
+Documentation/Guide
+- [Remix.run official MDX docs](https://remix.run/docs/en/1.16.0/guides/mdx) 
+- [Table of Components](https://mdxjs.com/table-of-components/)- Table of HTML elements that can be shadowed by MDX components 
+- [Building a Next-Level Code Playground / Sandbox / REPL with Sandpack](https://www.joshwcomeau.com/react/next-level-playground/)
+- [External Links, New Tabs, and Accessibility / Coder’s Block](https://codersblock.com/blog/external-links-new-tabs-and-accessibility/)
+- [web.dev Semantic HTML guide](https://web.dev/learn/html/semantic-html/)
+- [WCAG G64: Providing a Table of Contents | Techniques for WCAG 2.0](https://www.w3.org/TR/WCAG20-TECHS/G64.html)
+- [How to Make Emojis Accessible in HTML | DevYarns](https://devyarns.com/accessible-emojis/)
+
+Tools:
+- [unifiedjs/unified](https://github.com/unifiedjs/unified)
+ -[GitHub - kentcdodds/mdx-bundler: 🦤 Give me MDX/TSX strings and I’ll give you back a component you can render. Supports imports!](https://github.com/kentcdodds/mdx-bundler)
+- [React Emojis - tool to copy a11y emoji markup for a given emoji](https://dreamyguy.github.io/react-emojis/)
+- [GitHub - jake-low/remark-sectionize: Remark plugin to wrap each heading and the content that follows it in a `<section>` tag](https://github.com/jake-low/remark-sectionize)
+- [GitHub - florianeckerstorfer/remark-a11y-emoji: Remark Plugin to make Emoji in Markdown accessible. Wraps Emoji in a <span>-Tag with role and aria-label attributes.](https://github.com/florianeckerstorfer/remark-a11y-emoji)
+- [remark/plugins.md at main · remarkjs/remark · GitHub](https://github.com/remarkjs/remark/blob/main/doc/plugins.md)
+- [rehype/plugins.md at main · rehypejs/rehype · GitHub](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)
+
+
 ## Remix MDX Docs Demo 📖
 
 Remix MDX Docs Demo is a documentation site starter.
