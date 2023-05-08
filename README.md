@@ -5,12 +5,12 @@ Markdown has become an essential tool for creating content on the web. It is a s
  
 Presented by: Monica Powell at Remix Conf 2023
 
-[View presentation slides](https://slides.com/m0nica/deck/edit#/47)
+[View presentation deck](https://slides.com/m0nica/remixmdx/)
 
-This repo contains demo code for using MDX-bundler with Remix with
+This repo contains demo code for using MDX-bundler and Remix with:
 - component shadowing
-- remark and remix plugins
-- custom remark plugin
+- Remark and Remix plugins
+- Custom Remark plugin
 - imported components 
 
 ## Remix MDX Docs Demo 📖
