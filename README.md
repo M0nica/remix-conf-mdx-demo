@@ -24,13 +24,15 @@ Documentation/Guide
 - [web.dev Semantic HTML guide](https://web.dev/learn/html/semantic-html/)
 - [WCAG G64: Providing a Table of Contents | Techniques for WCAG 2.0](https://www.w3.org/TR/WCAG20-TECHS/G64.html)
 - [How to Make Emojis Accessible in HTML | DevYarns](https://devyarns.com/accessible-emojis/)
+- [Accessible footnotes and a bit of React](https://kittygiraudel.com/2020/11/24/accessible-footnotes-and-a-bit-of-react/)
 
 Tools:
 - [unifiedjs/unified](https://github.com/unifiedjs/unified)
- -[GitHub - kentcdodds/mdx-bundler: 🦤 Give me MDX/TSX strings and I’ll give you back a component you can render. Supports imports!](https://github.com/kentcdodds/mdx-bundler)
+-[GitHub - kentcdodds/mdx-bundler: 🦤 Give me MDX/TSX strings and I’ll give you back a component you can render. Supports imports!](https://github.com/kentcdodds/mdx-bundler)
 - [React Emojis - tool to copy a11y emoji markup for a given emoji](https://dreamyguy.github.io/react-emojis/)
 - [GitHub - jake-low/remark-sectionize: Remark plugin to wrap each heading and the content that follows it in a `<section>` tag](https://github.com/jake-low/remark-sectionize)
 - [GitHub - florianeckerstorfer/remark-a11y-emoji: Remark Plugin to make Emoji in Markdown accessible. Wraps Emoji in a <span>-Tag with role and aria-label attributes.](https://github.com/florianeckerstorfer/remark-a11y-emoji)
+- [GitHub - KittyGiraudel/react-ally-footnotes](https://github.com/KittyGiraudel/react-a11y-footnotes)
 - [remark/plugins.md at main · remarkjs/remark · GitHub](https://github.com/remarkjs/remark/blob/main/doc/plugins.md)
 - [rehype/plugins.md at main · rehypejs/rehype · GitHub](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)
 
