@@ -1,14 +1,21 @@
-# Remix Docs Stack
+# Remixing MDX to Improve Content Accessibility and Usability
 
-Learn more about [Remix Stacks](https://remix.run/stacks).
 
-```bash
-npx create-remix --template freekrai/remix-docs
-```
+Markdown has become an essential tool for creating content on the web. It is a simple and easy-to-use markup language that allows users to format text using plain text syntax. However, as the complexity of the content increases, Markdown can become limiting. That's where MDX comes in.T his demo site showcases the power of MDX in making Markdown more accessible! This site was created by [Monica Powell](https://aboutmonica.com) for [Remix Conf](https://remix.run/conf) and is an MDX-based fork of the [remix-docs](https://github.com/freekrai/remix-docs) stack (which uses Markdoc). The talk is an exploration of how using MDX with Remix enhances the Markdown authoring experience, unlocks an ecosystem of tools to improve accessibility & usability, and enables developers to craft more customized content experiences. This talk will walk through multiple ways MDX can be incorporated into a Remix site and provides examples of leveraging MDX to strengthen the usability and accessibility of content.
+ 
+Presented by: Monica Powell at Remix Conf 2023
 
-## Remix Docs 📖
+[View presentation slides](https://slides.com/m0nica/deck/edit#/47)
 
-Remix Docs is a documentation site starter.
+This repo contains demo code for using MDX-bundler with Remix with
+- component shadowing
+- remark and remix plugins
+- custom remark plugin
+- imported components 
+
+## Remix MDX Docs Demo 📖
+
+Remix MDX Docs Demo is a documentation site starter.
 
 - `content`: where mdx is stored
 - `content/docs`: docs, stored as: `SLUG/index.mdx`
@@ -72,7 +79,7 @@ The second part of our config is inside the `app/docs.config.ts` file:
 export default {
   base: "/",
   lang: "en-US",
-  title: "Remix Docs",
+  title: "Remix MDX Docs Demo",
   description: "Just playing around.",
   nav: [
     { text: "Docs", link: "/docs" },
@@ -99,7 +106,7 @@ export default {
     enabled: true,
   },
   editLink: {
-    link: "https://github.com/freekrai/remix-docs",
+    link: "https://github.com/m0nica/remix-conf-mdx-demo",
     text: "Edit this page on GitHub",
   },
 };
@@ -167,10 +174,6 @@ vercel
 ```
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
-
-### Cloudflare Pages
-
-Coming Soon
 
 ### Netlify
 
