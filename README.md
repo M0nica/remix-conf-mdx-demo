@@ -1,14 +1,45 @@
-# Remix Docs Stack
+# Remixing MDX to Improve Content Accessibility and Usability
 
-Learn more about [Remix Stacks](https://remix.run/stacks).
+<img src="https://user-images.githubusercontent.com/6998954/236949872-7cf12d3b-45c8-449d-b787-df31ec6e146a.png" alt="Monica's headshot next to the text Monica Powell is speaking at Remix Conf 2023, May 9th-11th on Remixing MDX to Create More Accesible Content" width="300">
 
-```bash
-npx create-remix --template freekrai/remix-docs
-```
+**[View presentation deck](https://slides.com/m0nica/remixmdx/)**
 
-## Remix Docs 📖
+Markdown has become an essential tool for creating content on the web. It is a simple and easy-to-use markup language that allows users to format text using plain text syntax. However, as the complexity of the content increases, Markdown can become limiting. That's where MDX comes in. This demo site showcases the power of MDX in making Markdown more accessible! This site was created by [Monica Powell](https://aboutmonica.com) for [Remix Conf](https://remix.run/conf) and is an MDX-based fork of the [remix-docs](https://github.com/freekrai/remix-docs) stack (which uses Markdoc). The talk is an exploration of how using MDX with Remix enhances the Markdown authoring experience, unlocks an ecosystem of tools to improve accessibility & usability, and enables developers to craft more customized content experiences. This talk walksthrough multiple ways MDX can be incorporated into a Remix site and provides examples of leveraging MDX to strengthen the usability and accessibility of content.
+ 
+Presented by: Monica Powell at Remix Conf 2023
 
-Remix Docs is a documentation site starter.
+This repo contains demo code for using MDX-bundler and Remix with:
+- component shadowing
+- Remark and Remix plugins
+- Custom Remark plugin
+- imported components 
+
+## Resources
+
+Documentation/Guide
+- [Remix.run official MDX docs](https://remix.run/docs/en/1.16.0/guides/mdx) 
+- [Table of Components](https://mdxjs.com/table-of-components/)- Table of HTML elements that can be shadowed by MDX components 
+- [Building a Next-Level Code Playground / Sandbox / REPL with Sandpack](https://www.joshwcomeau.com/react/next-level-playground/)
+- [External Links, New Tabs, and Accessibility / Coder’s Block](https://codersblock.com/blog/external-links-new-tabs-and-accessibility/)
+- [web.dev Semantic HTML guide](https://web.dev/learn/html/semantic-html/)
+- [WCAG G64: Providing a Table of Contents | Techniques for WCAG 2.0](https://www.w3.org/TR/WCAG20-TECHS/G64.html)
+- [How to Make Emojis Accessible in HTML | DevYarns](https://devyarns.com/accessible-emojis/)
+- [Accessible footnotes and a bit of React](https://kittygiraudel.com/2020/11/24/accessible-footnotes-and-a-bit-of-react/)
+
+Tools:
+- [unifiedjs/unified](https://github.com/unifiedjs/unified)
+-[GitHub - kentcdodds/mdx-bundler: 🦤 Give me MDX/TSX strings and I’ll give you back a component you can render. Supports imports!](https://github.com/kentcdodds/mdx-bundler)
+- [React Emojis - tool to copy a11y emoji markup for a given emoji](https://dreamyguy.github.io/react-emojis/)
+- [GitHub - jake-low/remark-sectionize: Remark plugin to wrap each heading and the content that follows it in a `<section>` tag](https://github.com/jake-low/remark-sectionize)
+- [GitHub - florianeckerstorfer/remark-a11y-emoji: Remark Plugin to make Emoji in Markdown accessible. Wraps Emoji in a <span>-Tag with role and aria-label attributes.](https://github.com/florianeckerstorfer/remark-a11y-emoji)
+- [GitHub - KittyGiraudel/react-ally-footnotes](https://github.com/KittyGiraudel/react-a11y-footnotes)
+- [remark/plugins.md at main · remarkjs/remark · GitHub](https://github.com/remarkjs/remark/blob/main/doc/plugins.md)
+- [rehype/plugins.md at main · rehypejs/rehype · GitHub](https://github.com/rehypejs/rehype/blob/main/doc/plugins.md)
+
+
+## Remix MDX Docs Demo 📖
+
+Remix MDX Docs Demo is a documentation site starter.
 
 - `content`: where mdx is stored
 - `content/docs`: docs, stored as: `SLUG/index.mdx`
@@ -21,7 +52,7 @@ This also gives you a lot of flexibility, for example, you can have multiple fil
 
 - `content/posts/hello-world/index.mdx` returns as `/hello-world`
 - `content/posts/hello-world/abc.mdx` returns as `/hello-world/abc`
-- `content/posts/hello-world/more-hello/index.mdx` returns as  `hello-world/more-hello`
+- `content/posts/hello-world/more-hello/index.mdx` returns as `hello-world/more-hello`
 - `content/posts/hello/still-hello/index.mdx` returns as `hello/still-hello`
 - `content/posts/2022/test/index.mdx` returns as `/2022/test`
 
@@ -58,7 +89,7 @@ By default, remix-docs will try to use the file system to read files, this works
 
 - `SESSION_SECRET`: Session Secret used for sessions such as dark mode
 - `USE_FILESYSTEM_OR_GITHUB`: this is either `fs` or `gh`
-- `GITHUB_TOKEN`:  your Personal access token
+- `GITHUB_TOKEN`: your Personal access token
 - `GITHUB_OWNER`: your Github name
 - `GITHUB_REPO`: your Github repo
 
@@ -70,40 +101,38 @@ The second part of our config is inside the `app/docs.config.ts` file:
 
 ```js
 export default {
-    base: '/',
-	lang: 'en-US',
-    title: 'Remix Docs',
-    description: 'Just playing around.',
-    nav: [
-        { text: 'Docs', link: '/docs' },
-        { text: 'Blog', link: '/blog' },
-    ],
-    head: [
-
-    ],
-    sidebar: [
-        {
-            title: 'Introduction',
-            links: [
-                { title: 'Getting started', href: '/docs/getting-started' },
-                { title: 'Installation', href: '/docs/installation' },
-            ],
-        },
-        {
-            title: 'Core Concepts',
-            links: [
-                { title: 'Roadmap', href: '/docs/roadmap' },
-                { title: 'Changelog', href: '/docs/changelog' },
-            ],
-        },
-    ],
-    search: {
-        enabled: true,
+  base: "/",
+  lang: "en-US",
+  title: "Remix MDX Docs Demo",
+  description: "Just playing around.",
+  nav: [
+    { text: "Docs", link: "/docs" },
+    { text: "Blog", link: "/blog" },
+  ],
+  head: [],
+  sidebar: [
+    {
+      title: "Introduction",
+      links: [
+        { title: "Getting started", href: "/docs/getting-started" },
+        { title: "Installation", href: "/docs/installation" },
+      ],
     },
-    editLink: {
-        link: 'https://github.com/freekrai/remix-docs',
-        text: 'Edit this page on GitHub',
+    {
+      title: "Core Concepts",
+      links: [
+        { title: "Roadmap", href: "/docs/roadmap" },
+        { title: "Changelog", href: "/docs/changelog" },
+      ],
     },
+  ],
+  search: {
+    enabled: true,
+  },
+  editLink: {
+    link: "https://github.com/m0nica/remix-conf-mdx-demo",
+    text: "Edit this page on GitHub",
+  },
 };
 ```
 
@@ -169,10 +198,6 @@ vercel
 ```
 
 It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
-
-### Cloudflare Pages
-
-Coming Soon
 
 ### Netlify
 

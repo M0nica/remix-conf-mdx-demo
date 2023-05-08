@@ -1,9 +1,7 @@
 /*
-This file handles all our Markdoc rendering on the frontend.
+This file handles all our MDX components rendering on the frontend.
 */
 
-import type { RenderableTreeNodes } from "@markdoc/markdoc";
-import { renderers } from "@markdoc/markdoc";
 import * as React from "react";
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import type { ReactNode } from "react";
@@ -62,21 +60,29 @@ type QuickLinkProps = {
 	href: string;
 };
 
-/*** 
- * check if the link is external or internal, if internal, use Remix Link, if external use a href...
- ***/
-const CustomLink = (props) => {
-	const href = props.href;
-	const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
-  
-	if (isInternalLink) {
-	  return (
-		<Link to={href} prefetch="intent" {...props}>{props.children}</Link>
-	  );
+/* Wrap links in Markup that identifies external links that will open in a new window and use Remix Links for internal links */
+export const CustomLink = (props: {
+	href: string;
+	children?: React.ReactNode;
+}) => {
+	const {href} = props;
+	const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
+	return isInternalLink ? <Link to={href} prefetch="intent" {...props} /> : <>
+		<a {...props} target="_blank" rel="noopener noreferrer" />
+		<span className="sr-only">(opens in a new tab)</span>
+	</>  
+}
+
+const Paragraph = (props: Props): JSX.Element => {
+
+	if (typeof props.children !== 'string') {
+		return <>{props.children}</>
 	}
-  
-	return <a target="_blank" rel="noopener noreferrer" {...props} />;
-};
+
+	return <> <p {...props} /><p>✨Sparkles Powered By: MDX✨</p></>
+}
+
+
   
 
 export function QuickLinks({ children }: QuickLinksProps) {
@@ -112,17 +118,6 @@ export function QuickLink({ title, description, href }: QuickLinkProps) {
 	)
 }
 
-QuickLink.scheme = {
-	render: QuickLink.name,
-	description: "Display the enclosed content in a quick link box",
-	children: ["paragraph", "tag", "list"],
-	selfClosing: true,
-	attributes: {
-		title: { type: String },
-		description: { type: String },
-		href: { type: String },
-	},
-};
 
 export function Callout({ children, title, type }: CalloutProps) {
   let IconComponent = icons[type]
@@ -141,19 +136,6 @@ export function Callout({ children, title, type }: CalloutProps) {
   );
 }
 
-Callout.scheme = {
-  render: Callout.name,
-  description: "Display the enclosed content in a callout box",
-  children: ["paragraph", "tag", "list"],
-  attributes: {
-    type: {
-      type: String,
-      default: "note",
-      matches: ["success", "check", "error", "note", "warning"],
-    },
-  },
-};
-
 
 type FenceProps = { 
 	children: ReactNode; 
@@ -169,7 +151,7 @@ export function Fence({ children, language }: FenceProps) {
 		theme={undefined}
 	  >
 		{({ className, style, tokens, getTokenProps }) => (
-		  <pre className={className} style={style}>
+				<pre className={cn('whitespace-pre-wrap',className)} style={style}>
 			<code>
 			  {tokens.map((line, lineIndex) => (
 				<React.Fragment key={lineIndex}>
@@ -201,23 +183,4 @@ Fence.scheme = {
   };
   
 
-type Props = {
-	content: RenderableTreeNodes;
-	components?: Record<string, React.ComponentType>;
-};
 
-
-export function MarkdownView({ content, components = {} }: Props) {
-	return (
-		<>{renderers.react(
-			content, 
-			React, { 
-				components: { 
-					Callout,
-					Fence, 
-					QuickLinks,
-					QuickLink
-				} 
-			})}</>
-	)
-}

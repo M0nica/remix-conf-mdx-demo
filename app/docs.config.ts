@@ -1,7 +1,7 @@
 export default {
     base: '/',
 	lang: 'en-US',
-    title: 'Remix Docs',
+    title: 'Remix MDX Docs Demo',
     description: 'Just playing around.',
     nav: [
         { text: 'Docs', link: '/docs' },
@@ -14,15 +14,14 @@ export default {
         {
             title: 'Introduction',
             links: [
-                { title: 'Getting started', href: '/docs/getting-started' },
+                { title: 'About', href: '/docs/about' },
                 { title: 'Installation', href: '/docs/installation' },
             ],
         },
         {
             title: 'Core Concepts',
             links: [
-                { title: 'Roadmap', href: '/docs/roadmap' },
-                { title: 'Changelog', href: '/docs/changelog' },
+                { title: 'Table of Contents 101', href: '/docs/why-toc' },
             ],
         },
     ],
@@ -31,7 +30,7 @@ export default {
     },
     editLink: {
         enabled: true,
-        link: 'https://github.com/freekrai/remix-docs',
+        link: 'https://github.com/m0nica/remix-mdx-docs',
         text: 'Edit this page on GitHub',
     },
 };

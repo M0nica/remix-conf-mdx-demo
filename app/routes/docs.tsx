@@ -1,13 +1,16 @@
-import { ErrorBoundaryComponent, json, LoaderArgs, SerializeFrom} from '@vercel/remix';
+import type { ErrorBoundaryComponent, LoaderArgs, SerializeFrom} from '@vercel/remix';
+import { json} from '@vercel/remix';
 import { Link,  useLoaderData } from "@remix-run/react";
 import { BlogPost as BlogPostType } from '~/types';
 import { getContent } from '~/utils/blog.server';
 import BlogPost from '~/components/BlogPost';
 import { CacheControl } from "~/utils/cache-control.server";
 import { getSeoMeta } from "~/seo";
+import { getMDXComponent } from 'mdx-bundler/client';
+import { Callout, CustomLink } from '~/components/Markdown';
 
-import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/markdoc.server";
+import { parseMdx } from "~/utils/mdx-bundler.server";
+import * as React from 'react';
 
 export const meta = ({data}) => {
 	if (!data) return {};
@@ -23,7 +26,7 @@ export const meta = ({data}) => {
 }
 export let loader = async function({}: LoaderArgs) {
   const files = await getContent(`docs/index`);
-  let post = files && parseMarkdown(files[0].content);
+  let post = files && await parseMdx(files[0].content);
 
   return json({
     post
@@ -36,16 +39,19 @@ export let loader = async function({}: LoaderArgs) {
 
 
 export default function Index() {
-	const {post} = useLoaderData<typeof loader>();
+	const { post } = useLoaderData<typeof loader>();
+
+	const { code } = post;
+
+	const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
 
 	return (
-		<article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-			<h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">{post.frontmatter.meta.title}</h1>
-			<div className="w-full mt-4 prose dark:prose-dark max-w-none">
-				{post.body && <MarkdownView content={post.body} />}
-			</div>
+		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 
+		lg:prose-lg'>
+			<Component components={{Callout, a: CustomLink}}/>
 		</article>
-	)
+	);
 }
 
 export const ErrorBoundary: ErrorBoundaryComponent = ({error}) => {

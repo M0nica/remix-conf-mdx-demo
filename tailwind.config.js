@@ -100,6 +100,7 @@ module.exports = {
         },
         dark: {
           css: {
+            '--tw-prose-bold': theme('colors.gray.100'),
             color: theme('colors.gray.200'),
             a: {
               color: theme('colors.blue.400'),

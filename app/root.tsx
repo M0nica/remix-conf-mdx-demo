@@ -26,12 +26,12 @@ import ErrorPage from '~/components/ErrorPage'
 import config from '~/docs.config';
 
 import { getSeo } from "~/seo";
-let [seoMeta, seoLinks] = getSeo();
 
 import tailwindStyles from "./tailwind.css"
-
+import footnoteStyles from "./footnotes.css"
 //import type {SideBarItem, SidebarGroup} from '~/utils/docs.server';
 import Container from "~/components/layout/Container";
+let [seoMeta, seoLinks] = getSeo();
 
 export const handle = {
   id: 'root',
@@ -51,6 +51,7 @@ export const links: LinksFunction = () => [
   ...seoLinks,
   { rel: "preconnect", href: "//fonts.gstatic.com", crossOrigin: "anonymous" },
   {rel: "stylesheet", href: tailwindStyles},
+  { rel: "stylesheet", href: footnoteStyles },
   { rel: "stylesheet", href: "//fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&amp;lang=en" },
 ]
 

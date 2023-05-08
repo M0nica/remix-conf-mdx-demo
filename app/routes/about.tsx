@@ -10,14 +10,15 @@ import { useLoaderData } from '@remix-run/react'
 import invariant from "tiny-invariant";
 import { getContent } from "~/utils/blog.server";
 import { CacheControl } from "~/utils/cache-control.server";
-import { getSeoMeta } from "~/seo";
+import { getSeoMeta } from "~/seo"; 
+import * as React from 'react';
+import { getMDXComponent } from 'mdx-bundler/client';
 
-import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/markdoc.server";
+import { parseMdx } from "~/utils/mdx-bundler.server";
 
 export const loader = async ({params}: LoaderArgs) => {
 	const files = await getContent(`pages/about`);
-	let post = files && parseMarkdown(files[0].content);
+	let post = files && await parseMdx(files[0].content);
 
 	invariant(post, "Not found");
 
@@ -48,14 +49,19 @@ export const meta: MetaFunction = ({data}) => {
 }
 
 export default function BlogPost() {
-	const {post} = useLoaderData<typeof loader>();
+
+	const { post } = useLoaderData<typeof loader>();
+
+	const { code, frontmatter } = post;
+
+	const Component = React.useMemo(() => getMDXComponent(code), [code]);
+
+
 
 	return (
-		<article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-			<h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">{post.frontmatter.meta.title}</h1>
-			<div className="w-full mt-4 prose dark:prose-dark max-w-none">
-				{post.body && <MarkdownView content={post.body} />}
-			</div>
+		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
+			<h1>{frontmatter.meta.title}</h1>
+			<Component />
 		</article>
-	)
+	);
 }

@@ -49,7 +49,7 @@ const navigation = {
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/freekrai/remix-docs',
+      href: 'https://github.com/m0nica/remix-mdx-docs',
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path

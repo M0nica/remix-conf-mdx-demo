@@ -7,15 +7,19 @@ import type {
 import { json, redirect } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react'
 import { parseISO, format } from 'date-fns';
+import * as React from 'react';
+import { getMDXComponent,  } from 'mdx-bundler/client';
+import {Fence, Callout,CustomLink} from "~/components/Markdown"
+import {TableOfContents}
+	from "~/components/TableOfContents"
 
-import invariant from "tiny-invariant";
+import { parseMdx } from "~/utils/mdx-bundler.server";
+ import { getContent } from "~/utils/blog.server";
 
-import { MarkdownView } from "~/components/Markdown";
-import { parseMarkdown } from "~/utils/markdoc.server";
-
-import { getContent } from "~/utils/blog.server";
 import { CacheControl } from "~/utils/cache-control.server";
 import { getSeoMeta, getSeoLinks } from "~/seo";
+import invariant from "tiny-invariant";
+;
 
 export const loader = async ({params}: LoaderArgs) => {
 	let path = params["*"];
@@ -27,7 +31,8 @@ export const loader = async ({params}: LoaderArgs) => {
 	}    
 
 	const files = await getContent(`docs/${path}`);
-	let post = files && parseMarkdown(files[0].content);
+
+	let post = files && (await parseMdx(files[0].content));
 
 	//invariant(post, "Not found");
 	if (!post) {
@@ -67,32 +72,25 @@ export const links = () => {
 	return [...seoLinks];
 };
 
+
+
 export default function BlogPost() {
-	const {post} = useLoaderData<typeof loader>();
+	const { post } = useLoaderData<typeof loader>();
+
+	const { code, headings, frontmatter } = post;
+
+	const Component = React.useMemo(() => getMDXComponent(code), [code]);
 
 	return (
-        <div className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-			<article className="flex flex-col items-start justify-center w-full max-w-2xl mx-auto mb-16">
-				<h1 className="mb-4 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white">{post.frontmatter.meta.title}</h1>
-				<div className="flex flex-col items-start justify-between w-full mt-2 md:flex-row md:items-center">
-					<div className="flex items-center space-x-2">
-						{post.frontmatter.date && <p className="text-sm text-gray-700 dark:text-gray-300">
-							{'Created: '}
-							{post.frontmatter.date && format(parseISO(post.frontmatter.date), 'MMMM dd, yyyy')}
-						</p>}
-						{post.frontmatter.updated && <p className="text-sm text-gray-700 dark:text-gray-300">
-							{'Last updated: '}
-							{post.frontmatter.updated && format(parseISO(post.frontmatter.updated), 'MMMM dd, yyyy')}
-						</p>}
-					</div>
-					<p className="mt-2 text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">
-						{post.readTime.text}
-					</p>
-				</div>
-				<div className="w-full mt-4 prose dark:prose-dark max-w-none">
-					{post.body && <MarkdownView content={post.body} />}
-				</div>
-			</article>
-        </div>
-	)
+		<article className='prose prose-zinc mx-auto min-h-screen max-w-4xl pt-24 dark:text-white dark:prose-strong:text-pink-500 lg:prose-lg'>
+			<h1>{frontmatter.meta.title}</h1>
+			<Component 
+				components={{TableOfContents: () => <TableOfContents headings={headings}/>, Fence,
+				
+				Callout
+				, a: CustomLink,
+			
+				 }}/>
+		</article>
+	);
 }
